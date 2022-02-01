@@ -3,37 +3,20 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+using TMPro;
+
 public class QuestManager : MonoBehaviour
 {
     public GameObject prefabQuest;
 
     public List<Quest> quests = new List<Quest>();
 
-    private void Start()
+    public void CreateQuest(Quest _quest)
     {
-
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            CreateQuest("This is a Test");
-        }
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            ClearQuests();
-        }
-    }
-
-    private void CreateQuest(string _title)
-    {
-        GameObject newQuest = Instantiate(prefabQuest, transform);
-        Quest quest = newQuest.GetComponent<Quest>();
-        quests.Add(quest);
-        quest.title = _title;
-        quest.InitializeQuest();
+        GameObject newQuest = Instantiate(prefabQuest, GameObject.Find("QuestList").transform);
+        quests.Add(_quest);
+        _quest.linkedText = newQuest.GetComponent<TextMeshProUGUI>();
+        _quest.InitializeQuest();
     }
 
     private void ClearQuests()
