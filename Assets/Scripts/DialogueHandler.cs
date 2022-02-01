@@ -8,6 +8,8 @@ using TMPro;
 
 public class DialogueHandler : MonoBehaviour
 {
+    private PlayerMovement player;
+
     public DialogueManager diaMng;
     public List<Dialogue> dialogues = new List<Dialogue>();
 
@@ -20,6 +22,7 @@ public class DialogueHandler : MonoBehaviour
 
     private void Awake()
     {
+        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
         playerCanvas = GameObject.Find("PlayerText");
         text = GameObject.Find("InteractText").GetComponent<TextMeshProUGUI>();
     }
@@ -34,6 +37,7 @@ public class DialogueHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && inRange && !diaMng.textBox.activeSelf && !diaMng.finishedDialogue)
         {
             diaMng.StartDialogue(dialogues[currentDialogue]);
+            player.locked = true;
 
             if (currentDialogue < dialogues.Count - 1)
             {

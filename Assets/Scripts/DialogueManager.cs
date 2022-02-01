@@ -8,6 +8,7 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
+    private PlayerMovement player;
     public GameObject textBox;
     public TextMeshProUGUI charName;
     public TextMeshProUGUI charText;
@@ -19,6 +20,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Awake()
     {
+        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
         textBox.SetActive(false);
     }
 
@@ -59,6 +61,7 @@ public class DialogueManager : MonoBehaviour
             textBox.SetActive(false);
             finishedDialogue = true;
             currentSentence = 0;
+            player.locked = false;
         }
     }
 }
