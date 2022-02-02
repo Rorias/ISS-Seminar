@@ -1,24 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
-using UnityEngine.Events;
 
 using TMPro;
 
-public class DialogueHandler : MonoBehaviour
-{
-    private PlayerMovement player;
 
-    public DialogueManager diaMng;
-    public List<Dialogue> dialogues = new List<Dialogue>();
+public class House : MonoBehaviour
+{
+    public string houseName;
+    public Vector2 location;
+    [HideInInspector] public Vector2 teleportLocation;
+
+    private PlayerMovement player;
 
     private GameObject playerCanvas;
     private TextMeshProUGUI text;
 
     private bool inRange = false;
-    private int currentDialogue = 0;
-
 
     private void Awake()
     {
@@ -27,22 +27,12 @@ public class DialogueHandler : MonoBehaviour
         text = GameObject.Find("InteractText").GetComponent<TextMeshProUGUI>();
     }
 
-    private void Start()
-    {
-        playerCanvas.SetActive(false);
-    }
-
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && inRange && !diaMng.textBox.activeSelf && !diaMng.finishedDialogue)
+        if (Input.GetKeyDown(KeyCode.E) && inRange)
         {
-            diaMng.StartDialogue(dialogues[currentDialogue]);
-            player.locked = true;
-
-            if (currentDialogue < dialogues.Count - 1)
-            {
-                currentDialogue++;
-            }
+            teleportLocation = player.transform.position;
+            player.transform.position = location;
         }
     }
 
@@ -52,7 +42,7 @@ public class DialogueHandler : MonoBehaviour
         {
             inRange = true;
             playerCanvas.SetActive(true);
-            text.text = "Press 'E' to interact with " + name;
+            text.text = "Press 'E' to enter " + houseName;
         }
     }
 
