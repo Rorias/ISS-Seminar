@@ -76,7 +76,7 @@ public class DialogueHandler : MonoBehaviour
             }
         }
 
-        if (dialogues[currentDialogue].id < _id)
+        while (dialogues[currentDialogue].id < _id)
         {
             currentDialogue++;
         }
