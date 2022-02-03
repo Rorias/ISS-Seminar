@@ -39,7 +39,7 @@ public class ChoiceSystem : MonoBehaviour
         menuActive = true;
     }
 
-    private void CloseChoiceMenu()
+    public void CloseChoiceMenu()
     {
         currentMenu.SetActive(false);
         player.locked = false;
