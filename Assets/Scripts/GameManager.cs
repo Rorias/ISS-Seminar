@@ -6,7 +6,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private ScreenFader fading;
     private Vector2 tempPos = Vector2.zero;
+
+    private void Awake()
+    {
+        fading = GameObject.Find("Fader").GetComponent<ScreenFader>();
+    }
 
     public void MoveCharPosX(float _xPos)
     {
@@ -21,5 +27,15 @@ public class GameManager : MonoBehaviour
     public void MoveCharChar(GameObject _char)
     {
         _char.transform.position = tempPos;
+    }
+
+    public void FadeOut()
+    {
+        fading.FadeOut(Color.black);
+    }
+
+    public void FadeIn()
+    {
+        fading.FadeIn();
     }
 }
