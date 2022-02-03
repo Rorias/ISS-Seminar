@@ -401,6 +401,7 @@ GameObject:
   - component: {fileID: 179481675}
   - component: {fileID: 179481674}
   - component: {fileID: 179481676}
+  - component: {fileID: 179481678}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -465,6 +466,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &179481678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179481673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d1d6aedf3939a4d9752b175e17a1fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &204643260
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +601,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b29369ae7490d4e8d30e068e3c151d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diaMng: {fileID: 179481674}
   dialogues:
   - dialogueName: 
     charName: Cow
@@ -607,6 +619,18 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 179481678}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: MoveChar
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: GameManager+Char, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1021,7 +1045,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b29369ae7490d4e8d30e068e3c151d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diaMng: {fileID: 179481674}
   dialogues:
   - dialogueName: Talk To Leader
     charName: Leader
@@ -2816,7 +2839,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b29369ae7490d4e8d30e068e3c151d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diaMng: {fileID: 179481674}
   dialogues:
   - dialogueName: Talk to butcher
     charName: Butcher
@@ -3240,7 +3262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b29369ae7490d4e8d30e068e3c151d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diaMng: {fileID: 179481674}
   dialogues:
   - dialogueName: Talk to Farmer
     charName: Farmer
@@ -3460,7 +3481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b29369ae7490d4e8d30e068e3c151d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diaMng: {fileID: 179481674}
   dialogues:
   - dialogueName: 
     charName: Lily
