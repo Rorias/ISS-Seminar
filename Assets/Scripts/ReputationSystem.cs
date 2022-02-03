@@ -32,7 +32,7 @@ public class ReputationSystem : MonoBehaviour
         else
         {
             text.color = new Color(1, 0, 0, 1);
-            text.text = "-" + (_change * 100).ToString();
+            text.text = (_change * 100).ToString();
         }
 
         anim.Play("Base Layer.MoveTextUp", 0);
