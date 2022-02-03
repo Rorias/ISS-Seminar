@@ -10,7 +10,7 @@ public class DialogueHandler : MonoBehaviour
 {
     private PlayerMovement player;
 
-    public DialogueManager diaMng;
+    private DialogueManager diaMng;
     public List<Dialogue> dialogues = new List<Dialogue>();
 
     private GameObject playerCanvas;
@@ -22,6 +22,7 @@ public class DialogueHandler : MonoBehaviour
 
     private void Awake()
     {
+        diaMng = GameObject.Find("GameManager").GetComponent<DialogueManager>();
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
         playerCanvas = GameObject.Find("PlayerText");
         text = GameObject.Find("InteractText").GetComponent<TextMeshProUGUI>();
@@ -48,7 +49,7 @@ public class DialogueHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D _coll)
     {
-        if (_coll.CompareTag("Player"))
+        if (_coll.CompareTag("Player") && dialogues[currentDialogue].available)
         {
             inRange = true;
             playerCanvas.SetActive(true);
