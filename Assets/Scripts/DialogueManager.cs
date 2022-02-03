@@ -29,7 +29,7 @@ public class DialogueManager : MonoBehaviour
 
         for (int i = 0; i < allHandlers.Count; i++)
         {
-            for (int j = 0; j < allHandlers[i].dialogues.Count; i++)
+            for (int j = 0; j < allHandlers[i].dialogues.Count; j++)
             {
                 allDialogues.Add(allHandlers[i].dialogues[j]);
             }

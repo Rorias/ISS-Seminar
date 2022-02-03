@@ -48,7 +48,7 @@ public class QuestManager : MonoBehaviour
     {
         for (int i = 0; i < currentQuests.Count; i++)
         {
-            Destroy(currentQuests[i].gameObject);
+            Destroy(currentQuests[i].linkedText.gameObject);
         }
 
         currentQuests.Clear();
