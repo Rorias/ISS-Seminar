@@ -66,5 +66,9 @@ public class PlayerMovement : MonoBehaviour
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y);
             }
         }
+        else
+        {
+            rb2d.velocity = new Vector2(0, 0);
+        }
     }
 }

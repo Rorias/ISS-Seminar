@@ -34,12 +34,12 @@ public class DialogueHandler : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && inRange && !diaMng.textBox.activeSelf && !diaMng.finishedDialogue)
+        if (Input.GetKeyDown(KeyCode.E) && inRange && !diaMng.textBox.activeSelf && !diaMng.finishedDialogue && dialogues[currentDialogue].available)
         {
             diaMng.StartDialogue(dialogues[currentDialogue]);
             player.locked = true;
 
-            if (currentDialogue < dialogues.Count - 1)
+            if (currentDialogue < dialogues.Count - 1 && currentDialogue + 1 < dialogues.Count && dialogues[currentDialogue + 1].available)
             {
                 currentDialogue++;
             }
@@ -62,6 +62,22 @@ public class DialogueHandler : MonoBehaviour
         {
             inRange = false;
             playerCanvas.SetActive(false);
+        }
+    }
+
+    public void SetDialoguesAvailable(int _id)
+    {
+        for (int i = 0; i < dialogues.Count; i++)
+        {
+            if (dialogues[i].id == _id)
+            {
+                dialogues[i].available = true;
+            }
+        }
+
+        if (dialogues[currentDialogue].id < _id)
+        {
+            currentDialogue++;
         }
     }
 }

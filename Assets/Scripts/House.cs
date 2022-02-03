@@ -19,21 +19,45 @@ public class House : MonoBehaviour
     private TextMeshProUGUI text;
 
     private bool inRange = false;
+    private bool changingRoom = false;
+
+    private ScreenFader fading;
 
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
         playerCanvas = GameObject.Find("PlayerText");
         text = GameObject.Find("InteractText").GetComponent<TextMeshProUGUI>();
+        fading = GameObject.Find("Fader").GetComponent<ScreenFader>();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && inRange)
+        if (Input.GetKeyDown(KeyCode.E) && inRange && !changingRoom)
         {
-            teleportLocation = player.transform.position;
-            player.transform.position = location;
+            if (houseName == "your house")
+            {
+                GameObject.Find("FindYourHouse").GetComponent<Quest>().UpdateQuestStatus();
+            }
+
+            StartCoroutine(LoadZone());
         }
+    }
+
+    private IEnumerator LoadZone()
+    {
+        changingRoom = true;
+        player.locked = true;
+        fading.FadeOut(Color.black);
+
+        yield return new WaitUntil(() => fading.doneFadingOut);
+
+        teleportLocation = player.transform.position;
+        player.transform.position = location;
+
+        fading.FadeIn();
+        changingRoom = false;
+        player.locked = false;
     }
 
     private void OnTriggerEnter2D(Collider2D _coll)

@@ -57,7 +57,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            currentDialogue.questStart?.Invoke();
+            currentDialogue.dialogueEndEvent?.Invoke();
             textBox.SetActive(false);
             finishedDialogue = true;
             currentSentence = 0;
