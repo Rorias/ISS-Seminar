@@ -54,6 +54,7 @@ public class House : MonoBehaviour
 
         teleportLocation = player.transform.position;
         player.transform.position = location;
+        Camera.main.orthographicSize = 3.5f;
 
         fading.FadeIn();
         changingRoom = false;

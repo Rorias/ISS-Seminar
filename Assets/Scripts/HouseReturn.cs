@@ -44,6 +44,7 @@ public class HouseReturn : MonoBehaviour
         yield return new WaitUntil(() => fading.doneFadingOut);
 
         player.transform.position = houseRef.teleportLocation;
+        Camera.main.orthographicSize = 7f;
 
         fading.FadeIn();
         changingRoom = false;
