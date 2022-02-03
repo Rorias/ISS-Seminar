@@ -35,11 +35,6 @@ public class House : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && inRange && !changingRoom)
         {
-            if (houseName == "your house")
-            {
-                GameObject.Find("FindYourHouse").GetComponent<Quest>().UpdateQuestStatus();
-            }
-
             StartCoroutine(LoadZone());
         }
     }
@@ -54,7 +49,7 @@ public class House : MonoBehaviour
 
         teleportLocation = player.transform.position;
         player.transform.position = location;
-        Camera.main.orthographicSize = 3.5f;
+        Camera.main.orthographicSize = 4.5f;
 
         fading.FadeIn();
         changingRoom = false;
