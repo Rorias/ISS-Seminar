@@ -81,4 +81,15 @@ public class DialogueHandler : MonoBehaviour
             currentDialogue++;
         }
     }
+
+    public void SetDialoguesUnavailable(int _id)
+    {
+        for (int i = 0; i < dialogues.Count; i++)
+        {
+            if (dialogues[i].id == _id)
+            {
+                dialogues[i].available = false;
+            }
+        }
+    }
 }
