@@ -8,8 +8,11 @@ using TMPro;
 public class QuestManager : MonoBehaviour
 {
     public GameObject prefabQuest;
+    public Quest sleepQuest;
 
     public List<Quest> quests = new List<Quest>();
+
+    private bool questsCompleted = false;
 
     public void CreateQuest(Quest _quest)
     {
@@ -17,6 +20,21 @@ public class QuestManager : MonoBehaviour
         quests.Add(_quest);
         _quest.linkedText = newQuest.GetComponent<TextMeshProUGUI>();
         _quest.InitializeQuest();
+    }
+
+    public void Update()
+    {
+        if (questsCompleted)
+        {
+            for (int i = 0; i < quests.Count; i++)
+            {
+                if (!quests[i].completed) { return; }
+            }
+
+            questsCompleted = true;
+
+            CreateQuest(sleepQuest);
+        }
     }
 
     private void ClearQuests()

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     private ScreenFader fading;
     private Vector2 tempPos = Vector2.zero;
+    public int currentDay { get; private set; } = 0;
 
     private void Awake()
     {
@@ -37,5 +38,10 @@ public class GameManager : MonoBehaviour
     public void FadeIn()
     {
         fading.FadeIn();
+    }
+
+    public void SetDay(int _day)
+    {
+        currentDay = _day;
     }
 }

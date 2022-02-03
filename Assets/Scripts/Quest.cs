@@ -13,6 +13,7 @@ public class Quest : MonoBehaviour
     public TextMeshProUGUI linkedText;
     public string title;
     public int chainLength;
+    public int fromDay;
 
     [HideInInspector] public bool completed;
     private bool available = false;
