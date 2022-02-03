@@ -13,6 +13,8 @@ public class ChoiceSystem : MonoBehaviour
     private GameObject currentMenu;
     private PlayerMovement player;
 
+    public bool menuActive { get; private set; } = false;
+
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
@@ -34,11 +36,13 @@ public class ChoiceSystem : MonoBehaviour
 
         currentMenu.SetActive(true);
         player.locked = true;
+        menuActive = true;
     }
 
     private void CloseChoiceMenu()
     {
         currentMenu.SetActive(false);
         player.locked = false;
+        menuActive = false;
     }
 }

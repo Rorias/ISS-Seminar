@@ -11,6 +11,7 @@ public class DialogueHandler : MonoBehaviour
     private PlayerMovement player;
 
     private DialogueManager diaMng;
+    private ChoiceSystem ccSys;
     public List<Dialogue> dialogues = new List<Dialogue>();
 
     private GameObject playerCanvas;
@@ -23,6 +24,7 @@ public class DialogueHandler : MonoBehaviour
     private void Awake()
     {
         diaMng = GameObject.Find("GameManager").GetComponent<DialogueManager>();
+        ccSys = GameObject.Find("Choices").GetComponent<ChoiceSystem>();
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
         playerCanvas = GameObject.Find("PlayerText");
         text = GameObject.Find("InteractText").GetComponent<TextMeshProUGUI>();
@@ -35,7 +37,7 @@ public class DialogueHandler : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && inRange && !diaMng.textBox.activeSelf && !diaMng.finishedDialogue && dialogues[currentDialogue].available)
+        if (Input.GetKeyDown(KeyCode.E) && inRange && !diaMng.textBox.activeSelf && !diaMng.finishedDialogue && dialogues[currentDialogue].available && !ccSys.menuActive)
         {
             diaMng.StartDialogue(dialogues[currentDialogue]);
             player.locked = true;
