@@ -8,42 +8,54 @@ using TMPro;
 public class QuestManager : MonoBehaviour
 {
     public GameObject prefabQuest;
-    public Quest sleepQuest;
 
-    public List<Quest> quests = new List<Quest>();
+    private List<Quest> allQuests = new List<Quest>();
+    public List<Quest> currentQuests = new List<Quest>();
+
+    private int minCompletion = 1;
 
     private bool questsCompleted = false;
+
+    private void Awake()
+    {
+        Transform quests = GameObject.Find("Quests").transform;
+
+        for (int i = 0; i < quests.childCount; i++)
+        {
+            allQuests.Add(quests.transform.GetChild(i).GetComponent<Quest>());
+        }
+    }
 
     public void CreateQuest(Quest _quest)
     {
         GameObject newQuest = Instantiate(prefabQuest, GameObject.Find("QuestList").transform);
-        quests.Add(_quest);
+        currentQuests.Add(_quest);
         _quest.linkedText = newQuest.GetComponent<TextMeshProUGUI>();
         _quest.InitializeQuest();
     }
 
     public void Update()
     {
-        if (questsCompleted)
+        if (!questsCompleted && allQuests.FindAll(x => x.fromDay == GameManager.currentDay && !x.completed).Count <= minCompletion)
         {
-            for (int i = 0; i < quests.Count; i++)
-            {
-                if (!quests[i].completed) { return; }
-            }
-
             questsCompleted = true;
 
-            CreateQuest(sleepQuest);
+            CreateQuest(allQuests.Find(x => x.name == ("Sleep" + GameManager.currentDay)));
         }
     }
 
-    private void ClearQuests()
+    public void ClearQuests()
     {
-        for (int i = 0; i < quests.Count; i++)
+        for (int i = 0; i < currentQuests.Count; i++)
         {
-            Destroy(quests[i].gameObject);
+            Destroy(currentQuests[i].gameObject);
         }
 
-        quests.Clear();
+        currentQuests.Clear();
+    }
+
+    public void SetMinCompletionForDay(int _minQuestsRequired)
+    {
+        minCompletion = _minQuestsRequired;
     }
 }

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     private ScreenFader fading;
     private Vector2 tempPos = Vector2.zero;
-    public int currentDay { get; private set; } = 0;
+    public static int currentDay { get; private set; } = 0;
 
     private void Awake()
     {
