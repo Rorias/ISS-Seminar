@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI charText;
 
     private Dialogue currentDialogue;
+    private List<Dialogue> allDialogues = new List<Dialogue>();
     private int currentSentence = 0;
 
     [HideInInspector] public bool finishedDialogue = false;
@@ -22,6 +24,16 @@ public class DialogueManager : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
         textBox.SetActive(false);
+
+        List<DialogueHandler> allHandlers = FindObjectsOfType<DialogueHandler>().ToList();
+
+        for (int i = 0; i < allHandlers.Count; i++)
+        {
+            for (int j = 0; j < allHandlers[i].dialogues.Count; i++)
+            {
+                allDialogues.Add(allHandlers[i].dialogues[j]);
+            }
+        }
     }
 
     private void Update()
@@ -30,6 +42,22 @@ public class DialogueManager : MonoBehaviour
         {
             currentSentence++;
             UpdateDialogue();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Dialogue tempDia = null;
+
+            switch (GameManager.currentDay)
+            {
+                case 0:
+                    tempDia = allDialogues.Find(x => x.id == 1 && x.charName == "Newcomer");
+                    break;
+                default:
+                    break;
+            }
+
+            tempDia.dialogueEndEvent.Invoke();
         }
 
         if (Input.GetKeyUp(KeyCode.E))
