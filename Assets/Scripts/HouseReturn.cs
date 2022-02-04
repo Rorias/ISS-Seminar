@@ -13,6 +13,7 @@ public class HouseReturn : MonoBehaviour
 
     private GameObject playerCanvas;
     private TextMeshProUGUI text;
+    private AudioSource doorSound;
 
     private bool inRange = false;
     private bool changingRoom = false;
@@ -25,6 +26,7 @@ public class HouseReturn : MonoBehaviour
         playerCanvas = GameObject.Find("PlayerText");
         text = GameObject.Find("InteractText").GetComponent<TextMeshProUGUI>();
         fading = GameObject.Find("Fader").GetComponent<ScreenFader>();
+        doorSound = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -40,6 +42,7 @@ public class HouseReturn : MonoBehaviour
         changingRoom = true;
         player.locked = true;
         fading.FadeOut(Color.black);
+        doorSound.Play();
 
         yield return new WaitUntil(() => fading.doneFadingOut);
 
