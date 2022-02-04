@@ -8,6 +8,8 @@ using TMPro;
 
 public class ReputationSystem : MonoBehaviour
 {
+    public Animator finalAnimation;
+
     private Image reputationOverlay;
     private Animator anim;
     private TextMeshProUGUI text;
@@ -36,5 +38,27 @@ public class ReputationSystem : MonoBehaviour
         }
 
         anim.Play("Base Layer.MoveTextUp", 0);
+    }
+
+    public void SelectEnding()
+    {
+        if (reputationOverlay.fillAmount >= 0.5)
+        {
+            ShowGoodEnding();
+        }
+        else
+        {
+            ShowBadEnding();
+        }
+    }
+
+    private void ShowGoodEnding()
+    {
+        finalAnimation.Play("Base Layer.[ANIMNAME]", 0);
+    }
+
+    private void ShowBadEnding()
+    {
+        finalAnimation.Play("Base Layer.[ANIMNAME]", 0);
     }
 }
