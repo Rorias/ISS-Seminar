@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         fading = GameObject.Find("Fader").GetComponent<ScreenFader>();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    public void OnSceneLoaded(Scene _s, LoadSceneMode _lsm)
+    {
+
     }
 
     public void MoveCharPosX(float _xPos)
