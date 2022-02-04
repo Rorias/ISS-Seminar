@@ -106,11 +106,11 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            player.locked = false;
             currentDialogue.dialogueEndEvent?.Invoke();
             textBox.SetActive(false);
             finishedDialogue = true;
             currentSentence = 0;
-            player.locked = false;
         }
     }
 }
