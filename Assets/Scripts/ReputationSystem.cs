@@ -54,11 +54,11 @@ public class ReputationSystem : MonoBehaviour
 
     private void ShowGoodEnding()
     {
-        finalAnimation.Play("Base Layer.[ANIMNAME]", 0);
+        finalAnimation.Play("Ending1", 0);
     }
 
     private void ShowBadEnding()
     {
-        finalAnimation.Play("Base Layer.[ANIMNAME]", 0);
+        finalAnimation.Play("Ending2", 0);
     }
 }
