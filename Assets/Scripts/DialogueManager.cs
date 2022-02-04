@@ -54,10 +54,10 @@ public class DialogueManager : MonoBehaviour
                     tempDia = allDialogues.Find(x => x.id == 1 && x.charName == "Newcomer");
                     break;
                 case 1:
-                    tempDia = allDialogues.Find(x => x.id == 5 && x.charName == "Newcomer");
+                    tempDia = allDialogues.Find(x => x.id == 7 && x.charName == "Newcomer");
                     break;
                 case 2:
-                    tempDia = allDialogues.Find(x => x.id == 12 && x.charName == "Newcomer");
+                    tempDia = allDialogues.Find(x => x.id == 14 && x.charName == "Newcomer");
                     break;
                 case 3:
                     tempDia = allDialogues.Find(x => x.id == 17 && x.charName == "Newcomer");
